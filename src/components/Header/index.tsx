@@ -1,4 +1,5 @@
+import { Headerbar } from './styles'
 
-const Header = () => <header>cabeçalho</header>
+const Header = () => <Headerbar>cabeçalho</Headerbar>
 
 export default Header
