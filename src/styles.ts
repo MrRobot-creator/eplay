@@ -1,6 +1,6 @@
 import { createGlobalStyle } from 'styled-components'
 
-const Cores = {
+export const Cores = {
   branca: '#EEEEEE',
   preta: '#111',
   cinza: '#333',
