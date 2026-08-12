@@ -14,5 +14,6 @@ export const GlobalCss = createGlobalStyle`
   font-family: 'Roboto', sans-serif;
   body{
     background-color: ${Cores.preta};
+    color: ${Cores.branca};
 }
 `
