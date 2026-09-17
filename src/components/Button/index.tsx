@@ -1,24 +1,25 @@
 /* eslint-disable prettier/prettier */
 import { ButtonContainer, ButtonLink } from './styles'
 
-type Props = {
+export type Props = {
 type: 'button' | 'link'  
 title: string
 to?: string
 onClick?: () => void
 children?: string
+variant?: 'primary' | 'secondary'
 }
 
-const Button = ({ type, title, to, onClick, children }: Props) => {
+const Button = ({ type, title, to, onClick, children, variant = 'primary' }: Props) => {
     if (type === 'button') {
         return (
-            <ButtonContainer as="button" title={title} onClick={onClick}>
+                <ButtonContainer type="button" variant={variant} title={title} onClick={onClick}>
                  {children}
             </ButtonContainer>
         )
     }
     return (
-        <ButtonLink to={to as string} title={title} onClick={onClick}>
+        <ButtonLink to={to as string} title={title}>
             {children}
         </ButtonLink>
     )

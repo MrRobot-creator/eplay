@@ -1,23 +1,28 @@
-import { createBrowserRouter, RouterProvider } from 'react-router-dom'
-import Banner from './components/Banner'
+/* eslint-disable prettier/prettier */
+import { Provider } from 'react-redux'
+import { BrowserRouter } from 'react-router-dom'
+
 import Header from './components/Header'
 import { GlobalCss } from './styles'
 
-const rotas = createBrowserRouter([
-  {
-    path: '/',
-    element: <Banner />
-  }
-])
+import Rotas from './routes'
+import Footer from './components/Footer'
+import { store } from './store'
+import Cart from './components/Cart'
+
 function App() {
   return (
-    <>
+    <Provider store= {store}>
+    <BrowserRouter>
       <GlobalCss />
       <div className="container">
         <Header />
       </div>
-      <RouterProvider router={rotas} />
-    </>
+      <Rotas />
+      <Footer />
+      <Cart />
+    </BrowserRouter>
+    </Provider>
   )
 }
 

@@ -1,28 +1,41 @@
 /* eslint-disable prettier/prettier */
 import {Imagem, Titulo, Preco} from './styles'
-import bannerImg from '../../assets/images/banner-homem-aranha.png'
 import Tag from '../Tag'
 import Button from '../Button'
+import { formataPreco } from '../ProductsList'
+import { useGetFeaturedGameQuery } from '../../services/api'
 
-const Banner = () => (<Imagem style={{backgroundImage: `url(${bannerImg})`}}>
+
+const Banner = () => {
+
+    const { data: game, isLoading } = useGetFeaturedGameQuery()
+
+if (!game) {
+
+    return <h3>&apos;Carregando...&apos;</h3>
+}
+
+    return (
+        <Imagem style={{backgroundImage: `url(${game.media.cover})`}}>
     <div className="container">
         <Tag size="big">Destaque do dia</Tag>
         <div>
-    <Titulo>Marvel&apos;s Spider-Man: Miles Morales PS4 & PS5</Titulo>
+    <Titulo>{game.name}</Titulo>
     <Preco>
-        De <span>R$ 250,00</span> <br />
-        por apenas R$ 99,90
+        De <span>{formataPreco(game.prices.old)}</span> <br />
+        por apenas {formataPreco(game.prices.current)}
     </Preco>
         </div>
     <Button 
     type="link" 
-    to="produto"
+    to={`/product/${game.id}`}
      title="Clique aqui para aproveitar esta oferta">
 
         Apropveitar
     </Button>
     </div>
 </Imagem>
-)
+    )
+}
 
 export default Banner
