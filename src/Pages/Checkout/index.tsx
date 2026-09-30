@@ -90,18 +90,22 @@ const Checkout = () => {
           <Row>
             <InputGroup>
               <label htmlFor="fullName">Nome completo</label>
-              <input               
-                id="fullName" type="text"/>
-                <input name="fullName"
+                <input
+                id="fullName" 
+                type="text"
+                name="fullName"
                 value={form.values.fullName}
                 onChange={form.handleChange}
-                onBlur={form.handleBlur} />
+                onBlur={form.handleBlur} 
+                />
               <small>{getErrorMessage('fullName', form.errors.fullName)}</small>
             </InputGroup>
             <InputGroup>
               <label htmlFor="email">E-mail</label>
-              <input id="email" type="email" />
-              <input name="email"
+              <input 
+              id="email" 
+              type="email"
+              name="email"
               value={form.values.email}
               onChange={form.handleChange}
               onBlur={form.handleBlur} />
@@ -109,8 +113,9 @@ const Checkout = () => {
             </InputGroup>
             <InputGroup>
               <label htmlFor="cpf">CPF</label>
-              <input id="cpf" type="text"/>
-              <input 
+              <input
+              id="cpf" 
+              type="text" 
               name="cpf"
               value={form.values.cpf}
               onChange={form.handleChange}
@@ -122,7 +127,6 @@ const Checkout = () => {
           <Row>
             <InputGroup>
               <label htmlFor="deliveryEmail">E-mail</label>
-              <input id="deliveryEmail" type="email" />
               <input
                 id="deliveryEmail"
                 type="email"
@@ -150,7 +154,7 @@ const Checkout = () => {
                   'confirmDeliveryEmail',
                   form.errors.confirmDeliveryEmail
                 )}
-              </small>
+                </small>
             </InputGroup>
           </Row>
         </>
