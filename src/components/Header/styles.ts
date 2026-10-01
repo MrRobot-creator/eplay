@@ -41,7 +41,7 @@ export const HeaderRow = styled.div`
 
       ${Links} {
         display: none;
-      }
+       }
     }
   }
 `
@@ -54,7 +54,7 @@ export const NavMobile = styled.nav`
       display: none;
     }
   }
-    
+
   @media (max-width: ${breakpoints.tablet}) {
     &.is-open {
       display: block;
@@ -77,6 +77,7 @@ export const LinkItem = styled.li`
 `
 
 export const CartButton = styled.a`
+display: flex;
 
 img {
     margin-left: 16px;
@@ -86,6 +87,7 @@ img {
       span {
       display: none;
     }
+}
 `
 
 export const Hamburger = styled.div`
