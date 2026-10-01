@@ -49,11 +49,12 @@ export const HeaderRow = styled.div`
 export const NavMobile = styled.nav`
   display: none;
 
-  @media (max-width: ${breakpoints.desktop}) {
+    @media (max-width: ${breakpoints.desktop}) {
     &.is-open {
       display: none;
     }
   }
+    
   @media (max-width: ${breakpoints.tablet}) {
     &.is-open {
       display: block;
@@ -66,15 +67,17 @@ export const LinkItem = styled.li`
 
   @media (max-width: ${breakpoints.tablet}) {
     margin-right: 0;
+
     a {
       text-align: center;
-      dislpay: block;
+      display: block;
       padding: 16px 0;
     }
   }
 `
 
 export const CartButton = styled.a`
+
 img {
     margin-left: 16px;
   }
