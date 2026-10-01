@@ -27,29 +27,6 @@ const Header = () => {
 
   return (
     <HeaderBar>
-      <div>
-        <Link to="/">
-          <img src={logo} alt="Logo eplay" />
-        </Link>
-        <nav>
-          <Links>
-            <LinkItem>
-              <Link to="/Categories">Categorias</Link>
-            </LinkItem>
-            <LinkItem>
-              <a href="#">Novidades</a>
-            </LinkItem>
-            <LinkItem>
-              <a href="#">Promoção</a>
-            </LinkItem>
-          </Links>
-        </nav>
-      </div>
-      <CartButton onClick={openCart}>
-        {items.length} - produtos(s)
-        <img src={carrinho} alt="Carrinho" />
-      </CartButton>
-
       <HeaderRow>
         <div>
           <Hamburger onClick={() => setIsMenuOpen(!isMenuOpen)}>
