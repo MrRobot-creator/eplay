@@ -123,7 +123,7 @@ const Checkout = () => {
               <br />
               Abaixo estão os detalhes da sua compra:
               <br />
-              Número do pedido: {data.orderId} <br />
+              Número do pedido: {(data as { orderId: string }).orderId} <br />
               Forma de pagamento:{' '}
               {payWithCard ? 'Cartão de crédito' : 'Boleto bancário'}
             </p>
