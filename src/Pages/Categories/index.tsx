@@ -1,13 +1,13 @@
 /* eslint-disable prettier/prettier */
 import ProductsList from '../../components/ProductsList'
-import { useGetActionGamesQuery, useGetFightGamesQuery, useGetRpgGamesQuery, useGetSportGamesQuery, useGetSimulationGamesQuery } from '../../services/api'
+import { useGetActionGamesQuery, useGetFightGamesQuery, useGetRPGGamesQuery, useGetSportGamesQuery, useGetSimulationGamesQuery } from '../../services/api'
 
 const Categories = () => {
 
   const { data: actionGames } = useGetActionGamesQuery()
   const { data: simulationGames } = useGetSimulationGamesQuery()
   const { data: fightGames} = useGetFightGamesQuery()
-  const { data: rpgGames } = useGetRpgGamesQuery()
+  const { data: rpgGames } = useGetRPGGamesQuery()
   const { data: sportGames } = useGetSportGamesQuery()
 
   if(actionGames && simulationGames && fightGames && rpgGames && sportGames) {
