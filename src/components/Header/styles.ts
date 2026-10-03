@@ -9,7 +9,7 @@ export const Links = styled.ul`
 
   @media (max-width: ${breakpoints.tablet}) {
     display: block;
-    margin: 0;
+    margin-left: 0;
   }
 `
 
