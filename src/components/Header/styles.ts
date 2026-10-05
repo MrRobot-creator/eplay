@@ -14,7 +14,7 @@ export const Links = styled.ul`
 `
 
 export const HeaderBar = styled.header`
-  background-color: ${Colors.lightGray};
+  background-color: ${Colors.gray};
   padding: 24px;
   border-radius: 16px;
   margin-bottom: 80px;
