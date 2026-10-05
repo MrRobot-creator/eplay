@@ -31,7 +31,7 @@ z-index: 1;
 `
 
 export const Sidebar = styled.aside`
-background-color: ${Colors.lightGray};
+background-color: ${Colors.gray};
 z-index: 1;
 padding: 40px 16px 0 16px;
 max-width: 360px;
