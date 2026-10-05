@@ -24,6 +24,7 @@ transition: opacity 0.5s ease;
 
 export const Item = styled.li`
 position: relative;
+cursor: zoom-in;
 
 > img{
     border: 2px solid ${Cores.branca};
