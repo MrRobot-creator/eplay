@@ -1,6 +1,6 @@
 /* eslint-disable prettier/prettier */
 import styled from 'styled-components'
-import { Cores } from '../../styles'
+import { Colors } from '../../styles'
 
 type InputGroupProps = {
   maxWidth?: string
@@ -35,8 +35,8 @@ export const InputGroup = styled.div<InputGroupProps>`
 
   input,
   select {
-    background-color: ${Cores.branca};
-    border: 1px solid ${Cores.branca};
+    background-color: ${Colors.white};
+    border: 1px solid ${Colors.white};
     height: 32px;
     padding: 0 8px;
     width: 100%;
@@ -44,10 +44,10 @@ export const InputGroup = styled.div<InputGroupProps>`
 `
 
 export const TabButton = styled.button<TabButtonProps>`
-  background-color: ${(props) => (props.isActive ? Cores.verde : Cores.preta)};
+  background-color: ${(props) => (props.isActive ? Colors.green : Colors.black)};
   border: none;
   border-radius: 8px;
-  color: ${Cores.branca};
+  color: ${Colors.white};
   cursor: pointer;
   font-size: 14px;
   font-weight: bold;

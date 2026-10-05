@@ -1,5 +1,5 @@
 /* eslint-disable prettier/prettier */
-import { ButtonContainer, ButtonLink } from './styles'
+import * as S from './styles'
 
 export type Props = {
 type: 'button' | 'link'  
@@ -13,15 +13,15 @@ variant?: 'primary' | 'secondary'
 const Button = ({ type, title, to, onClick, children, variant = 'primary' }: Props) => {
     if (type === 'button') {
         return (
-                <ButtonContainer type="button" variant={variant} title={title} onClick={onClick}>
+                <S.ButtonContainer type="button" variant={variant} title={title} onClick={onClick}>
                  {children}
-            </ButtonContainer>
+            </S.ButtonContainer>
         )
     }
     return (
-        <ButtonLink to={to as string} title={title}>
+        <S.ButtonLink to={to as string} title={title}>
             {children}
-        </ButtonLink>
+        </S.ButtonLink>
     )
 }
 

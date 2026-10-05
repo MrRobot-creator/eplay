@@ -1,6 +1,6 @@
 /* eslint-disable prettier/prettier */
 import styled from 'styled-components'
-import { Cores } from '../../styles'
+import { Colors } from '../../styles'
 
 export const Items = styled.ul`
 display: flex;
@@ -27,7 +27,7 @@ position: relative;
 cursor: zoom-in;
 
 > img{
-    border: 2px solid ${Cores.branca};
+    border: 2px solid ${Colors.white};
     border-radius: 8px;
     width: 150px;
     height: 150px;
@@ -53,7 +53,7 @@ display: none;
 align-items: center;
 justify-content: center;
 
-&.visivel {
+&.is-Visible {
     display: flex;
 }
 

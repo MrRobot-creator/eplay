@@ -1,6 +1,6 @@
 /* eslint-disable prettier/prettier */
 import styled from "styled-components";
-import { Cores } from "../../styles";
+import { Colors } from "../../styles";
 import { TagContainer } from "../Tag/styles";
 import { ButtonContainer } from "../Button/styles";
 import fechar from '../../assets/images/fechar.png'
@@ -31,7 +31,7 @@ z-index: 1;
 `
 
 export const Sidebar = styled.aside`
-background-color: ${Cores.cinza};
+background-color: ${Colors.lightGray};
 z-index: 1;
 padding: 40px 16px 0 16px;
 max-width: 360px;
@@ -46,27 +46,27 @@ ${ButtonContainer} {
 export const Prices = styled.p`
 font-weight: bold;
 font-size: 14px;
-color: ${Cores.branca};
+color: ${Colors.white};
 margin-bottom: 24px;
 
 span{
     display: block;
     font-size: 12px;
-    color: ${Cores.cinzaClaro};
+    color: ${Colors.lightGray};
 }
 `
 
 export const Quantity = styled.p`
 font-weight: bold;
 font-size: 16px;
-color: ${Cores.branca};
+color: ${Colors.white};
 margin-top: 32px;
 margin-bottom: 16px;
 `
 
 export const CartItem = styled.li`
 display: flex;
-border-bottom: 1px solid ${Cores.cinzaClaro};
+border-bottom: 1px solid ${Colors.lightGray};
 padding: 8px 0;
 position: relative;
 
@@ -78,14 +78,14 @@ img{
 }
 
 h3{
-    color: ${Cores.branca};
+    color: ${Colors.white};
     font-weight: bold;
     font-size: 16px;
 }
 
 span{
     display: block;
-    color: ${Cores.branca};
+    color: ${Colors.white};
     font-weight: bold;
     font-size: 14px;
 }

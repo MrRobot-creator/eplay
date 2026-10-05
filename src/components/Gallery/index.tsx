@@ -1,9 +1,9 @@
 /* eslint-disable prettier/prettier */
-import Fechar from '../../assets/images/close 1.png'
+import closeIcon from '../../assets/images/close 1.png'
 import Play from '../../assets/images/play.png'
 import Zoom from '../../assets/images/zoom.png'
 import Section from '../Section'
-import { Action, Item, Items, Modal, ModalContent } from './styled'
+import* as S from './styled'
 import React, { useState } from 'react'
 import { GalleryItem } from '../../Pages/Home'
 
@@ -44,9 +44,9 @@ const CloseModal = () => {
     return (
         <>
   <Section title="Galeria" background="black">
-    <Items>
+    <S.Items>
         {items.map((media,index ) => (
-      <Item key={media.url} onClick={() => {
+      <S.Item key={media.url} onClick={() => {
         setModalState({
             type: media.type,
             url: media.url,
@@ -55,29 +55,29 @@ const CloseModal = () => {
       }}
       >
         <img src={getMediaCover(media)} alt={`Mídia ${index + 1} de ${name}`} />
-        <Action>
+        <S.Action>
             <img src={getMediaIcon(media)} alt='Clique para maximar a mídia' /> 
-        </Action>
-      </Item>
+        </S.Action>
+      </S.Item>
         ))}
-      </Items>
+      </S.Items>
   </Section>
-<Modal className={modalState.isVisible ? 'visivel' : ''}>
-      <ModalContent className='container'>
+<S.Modal className={modalState.isVisible ? 'is-Visible' : ''}>
+      <S.ModalContent className='container'>
 <header>
     <h4>{name}</h4>
-    <img src={Fechar}  alt='Icone de fechar' onClick={() => CloseModal()} />
+    <img src={closeIcon}  alt='Icone de fechar' onClick={CloseModal} />
 </header>
 {modalState.type === 'video' ? (
     <iframe frameBorder="0" src={modalState.url} />
   ) : (
     <img src={modalState.url} />
   )}
-  </ModalContent>
+  </S.ModalContent>
   <div
   onClick={() => CloseModal()}
   className="overlay"></div>
-</Modal>
+</S.Modal>
     </>
   )
 }

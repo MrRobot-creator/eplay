@@ -1,7 +1,7 @@
 /* eslint-disable prettier/prettier */
 
 import styled from 'styled-components'
-import { breakpoints, Cores } from '../../styles'
+import { breakpoints, Colors } from '../../styles'
 
 export const Links = styled.ul`
   display: flex;
@@ -14,13 +14,13 @@ export const Links = styled.ul`
 `
 
 export const HeaderBar = styled.header`
-  background-color: ${Cores.cinza};
+  background-color: ${Colors.lightGray};
   padding: 24px;
   border-radius: 16px;
   margin-bottom: 80px;
 
   a {
-    color: ${Cores.branca};
+    color: ${Colors.white};
     text-decoration: none;
     font-weight: bold;
   }
@@ -96,7 +96,7 @@ export const Hamburger = styled.div`
     display: block;
     width: 100%;
     height: 2px;
-    background-color: ${Cores.branca};
+    background-color: ${Colors.white};
     margin-bottom: 4px;
   }
 

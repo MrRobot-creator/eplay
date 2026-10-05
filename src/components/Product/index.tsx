@@ -1,6 +1,6 @@
 /* eslint-disable prettier/prettier */
 import Tag from '../Tag'
-import { Card, Descricao, Titulo, Infos } from './styles'
+import * as S from './styles'
 
 type Props ={
   title: string;
@@ -14,28 +14,28 @@ type Props ={
 
 const Product = ({ title, category, system, description, infos, image, id}:Props) => {
 
-const getDescricao = (descricao: string) => {
+const getDescription = (text: string) => {
 
-  if (descricao.length > 95){
-    return descricao.slice(0, 92) + '...'
+  if (text.length > 95){
+    return text.slice(0, 92) + '...'
   }
-return descricao
+return text
 }
   return (
-  <Card title="{`Clique aqui para ver mais detalhes do jogo ${title}`}" to={`/product/${id}`}>
+  <S.Card title={ `Clique aqui para ver mais detalhes do jogo: ${title}` } to={`/product/${id}`}>
     <img src={image} alt={title} />
-    <Infos>
+    <S.Infos>
       {infos.map((info) => (
         <Tag key={info}>{info}</Tag>
       ))}
-    </Infos>
-    <Titulo>{title}</Titulo>
+    </S.Infos>
+    <S.Title>{title}</S.Title>
     <Tag>{category}</Tag>
     <Tag>{system}</Tag>
-    <Descricao>
-{getDescricao(description)}
-    </Descricao>
-  </Card>
+    <S.Description>
+{getDescription(description)}
+    </S.Description>
+  </S.Card>
   )
 }
 
