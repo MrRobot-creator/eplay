@@ -4,6 +4,7 @@ import Tag from '../Tag'
 import Button from '../Button'
 import { parseToBrl } from '../../utils'
 import { useGetFeaturedGameQuery } from '../../services/api'
+import Loader from '../Loader'
 
 
 
@@ -13,7 +14,7 @@ const Banner = () => {
 
 if (!game) {
 
-    return <h3>&apos;Carregando...&apos;</h3>
+    return <Loader />
 }
 
     return (

@@ -59,6 +59,7 @@
     "eslint-plugin-react-hooks": "^4.6.0",
     "npm-watch": "^0.13.0",
     "prettier": "^2.8.4",
-    "react-redux": "^9.3.0"
+    "react-redux": "^9.3.0",
+    "react-spinners": "^0.17.1"
   }
 }

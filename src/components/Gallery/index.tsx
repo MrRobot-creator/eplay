@@ -66,7 +66,7 @@ const CloseModal = () => {
       <S.ModalContent className='container'>
 <header>
     <h4>{name}</h4>
-    <img src={closeIcon}  alt='Icone de fechar' onClick={CloseModal} />
+    <img  src={closeIcon}  alt='Icone de fechar' onClick={CloseModal} />
 </header>
 {modalState.type === 'video' ? (
     <iframe frameBorder="0" src={modalState.url} />

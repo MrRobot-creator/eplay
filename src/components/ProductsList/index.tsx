@@ -1,19 +1,21 @@
 /* eslint-disable prettier/prettier */
 import { Game } from "../../Pages/Home";
 import { parseToBrl } from "../../utils";
+import Loader from "../Loader";
 import Product from "../Product";
 import { Container, List } from "./styles";
 
 export type Props = {
     title: string;
     background: 'gray' | 'black'
-    games: Game[]
+    games?: Game[]
     id?: string
+    isLoading: boolean
 
 }
 
 
-const ProductList = ({ background, title, games, id}: Props) => {
+const ProductList = ({ background, title, games, id, isLoading }: Props) => {
 const getGamesTags = (game: Game) => {
   const tags = [];
 
@@ -31,14 +33,16 @@ const getGamesTags = (game: Game) => {
   return tags
 }
 
+if (isLoading) {
+  return <Loader />
+}
 
   return (
   <Container id={id} background={background}>
 <div className="container">
         <h2>{title}</h2>
     <List>
-      {games.map(game => (
-
+      {games && games.map((game) => (
         <li key={game.id}>
           <Product 
             id={game.id}

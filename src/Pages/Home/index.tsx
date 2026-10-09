@@ -34,19 +34,18 @@ media: {
 }
 
 const Home = () => {
-const { data: onSaleGames } = useGetOnSaleQuery()
-const { data: soonGames } = useGetSoonQuery()
+const { data: onSaleGames, isLoading: isOnSaleLoading } = useGetOnSaleQuery()
+const { data: soonGames, isLoading: isSoonLoading } = useGetSoonQuery()
 
-if (onSaleGames && soonGames) {
+
     return (
     <>
     <Banner />
-    <ProductsList id='on-sale' games={onSaleGames} title="Promoções" background="gray" />
-    <ProductsList id='coming-soon' games={soonGames} title="Em Breve" background="black" />
+    <ProductsList id='on-sale' games={onSaleGames} title="Promoções" background="gray" isLoading={isOnSaleLoading}/>
+    <ProductsList id='coming-soon' games={soonGames} title="Em Breve" background="black" isLoading={isSoonLoading} />
     </>
     )
   }
-  return <h4>Carregando...</h4>
-}
+
 
 export default Home
