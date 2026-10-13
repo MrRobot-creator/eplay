@@ -1,6 +1,6 @@
 /* eslint-disable prettier/prettier */
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { Game } from '../../Pages/Home'
+
 
 type CartState = {
   items: Game[]
@@ -33,9 +33,12 @@ state.items = state.items.filter((item) => item.id !== action.payload)
     },
         close: (state) => {
       state.isOpen = false
+  },
+  clear: (state) => {
+    state.items = []
   }
 }
 })
 
-export const { add,open, close, remove} = cartSlice.actions
+export const { add,open, close, remove, clear} = cartSlice.actions
 export default cartSlice.reducer

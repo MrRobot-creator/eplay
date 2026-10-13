@@ -40,6 +40,13 @@ width: 100%;
 ${ButtonContainer} {
     max-width: 100%;
     width: 100%;
+
+    .empty-text {
+font-size: 14px;
+line-height: 22px;
+color: ${Colors.white};
+text-align: center;
+    }
 }
 `
 

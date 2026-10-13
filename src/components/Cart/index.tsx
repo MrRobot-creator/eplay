@@ -33,6 +33,8 @@ const goToCheckout = () => {
 <S.CartContainer className= {isOpen ? 'is-open' : ''}>
     <S.Overlay onClick={closeCart}/>
         <S.Sidebar>
+            {items.length > 0 ? (
+<>
 <ul>
     {items.map((item) => (
     <S.CartItem key={item.id}>
@@ -53,6 +55,12 @@ const goToCheckout = () => {
 <Button onClick={goToCheckout} title=" Clique aqui para continuar sua compra" type="button">
     Conatinuar com a Compra
 </Button>
+</>
+            ) : (
+<p className="empty-text">
+    O carrinho está vazio, adicione pelo menos um produto para prosseguir com a compra.
+</p>
+            )}
     </S.Sidebar>
 </S.CartContainer>
 )

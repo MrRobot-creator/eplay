@@ -1,6 +1,5 @@
 /* eslint-disable prettier/prettier */
 import { useDispatch } from "react-redux"
-import { Game } from "../../Pages/Home"
 import Button from "../Button"
 import { parseToBrl } from "../../utils"
 import Tag from "../Tag"

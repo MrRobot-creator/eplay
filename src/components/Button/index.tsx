@@ -8,12 +8,13 @@ to?: string
 onClick?: () => void
 children?: string
 variant?: 'primary' | 'secondary'
+disabled?: boolean
 }
 
-const Button = ({ type, title, to, onClick, children, variant = 'primary' }: Props) => {
+const Button = ({ type, title, to, onClick, children,disabled, variant = 'primary' }: Props) => {
     if (type === 'button' || type === 'submit') {
         return (
-                <S.ButtonContainer type={type} variant={variant} title={title} onClick={onClick}>
+                <S.ButtonContainer type={type} variant={variant} title={title} onClick={onClick} disabled={disabled}>
                  {children}
             </S.ButtonContainer>
         )

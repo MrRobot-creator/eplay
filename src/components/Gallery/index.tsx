@@ -5,7 +5,7 @@ import Zoom from '../../assets/images/zoom.png'
 import Section from '../Section'
 import* as S from './styled'
 import React, { useState } from 'react'
-import { GalleryItem } from '../../Pages/Home'
+
 
 type Props = {
     defaultCover: string

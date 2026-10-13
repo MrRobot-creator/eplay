@@ -9,9 +9,11 @@ import { useFormik } from 'formik'
 import * as Yup from 'yup'
 import { usePurchaseMutation } from '../../services/api'
 import { RootReducer } from '../../store'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { Navigate } from 'react-router'
 import { getTotalPrice, parseToBrl } from '../../utils'
+import InputMask from 'react-input-mask'
+import { clear } from '../../store/reducers/cart'
 
 type installments = {
   quantity: number
@@ -21,9 +23,10 @@ type installments = {
 
 const Checkout = () => {
   const [payWithCard, setPayWithCard] = useState(false)
-  const [purchase, { data, isSuccess }] = usePurchaseMutation()
+  const [purchase, { data, isSuccess, isLoading }] = usePurchaseMutation()
   const { items } = useSelector((state: RootReducer) => state.cart)
   const [installments, setInstallments] = useState<installments[]>([])
+  const dispatch = useDispatch()
 
   const totalPrice = getTotalPrice(items)
 
@@ -82,7 +85,7 @@ const form = useFormik({
       cardCode: Yup.string().when((values, schema) =>
         payWithCard ? schema.required('O campo é obrigatório') : schema
       ),
-      installments: Yup.string().when((values, schema) =>
+      installments: Yup.number().when((values, schema) =>
         payWithCard ? schema.required('O campo é obrigatório') : schema
       )
     }),
@@ -97,7 +100,7 @@ const form = useFormik({
           email: values.deliveryEmail
         },
         payment: {
-          installments: 1,
+          installments: values.installments,
           card: {
             active: payWithCard,
             code: Number(values.cardCode),
@@ -108,12 +111,15 @@ const form = useFormik({
               name: values.cardOwner
             },
             expires: {
-              month: 1,
-              year: 2024
+              month: Number(values.expiresMonth),
+              year: Number(values.expiresYear)
             }
           }
         },
-        products: [{ id: 1, price: 200 }]
+        products: items.map((item) => ({
+          id: item.id,
+          price: item.prices.current as number
+        }))
       })
     }
   })
@@ -146,13 +152,20 @@ return installmentsArray
     }
   }, [totalPrice])
 
-  if (items.length === 0) {
+  useEffect(() => {
+    if (isSuccess) {
+      dispatch(clear())
+    }
+  }, [isSuccess, dispatch])
+
+
+  if (items.length === 0 && !isSuccess) {
     return <Navigate to="/" />
   }
 
   return (
     <div className="container">
-      {isSuccess ? (
+      {isSuccess && data ? (
         <Card title="Obrigado pela compra!">
           <>
             <p>
@@ -161,7 +174,7 @@ return installmentsArray
               <br />
               Abaixo estão os detalhes da sua compra:
               <br />
-              Número do pedido: {(data as { orderId: string }).orderId} <br />
+              Número do pedido: {data.orderId} <br />
               Forma de pagamento:{' '}
               {payWithCard ? 'Cartão de crédito' : 'Boleto bancário'}
             </p>
@@ -220,7 +233,7 @@ return installmentsArray
                 </S.InputGroup>
                 <S.InputGroup>
                   <label htmlFor="cpf">CPF</label>
-                  <input
+                  <InputMask
                     id="cpf"
                     type="text"
                     name="cpf"
@@ -228,6 +241,7 @@ return installmentsArray
                     onChange={form.handleChange}
                     onBlur={form.handleBlur}
                     className={checkInputHasError('cpf') ? 'error' : ''}
+                    mask="999.999.999-99"
                   />
                 </S.InputGroup>
               </S.Row>
@@ -304,7 +318,7 @@ return installmentsArray
                         <label htmlFor="cpfCardOwner">
                           CPF do titular do cartão
                         </label>
-                        <input
+                        <InputMask
                           id="cpfCardOwner"
                           type="text"
                           name="cpfCardOwner"
@@ -312,6 +326,7 @@ return installmentsArray
                           onChange={form.handleChange}
                           onBlur={form.handleBlur}
                           className={checkInputHasError('cpfCardOwner') ? 'error' : ''}
+                          mask="999.999.999-99"
                         />
                       </S.InputGroup>
                     </S.Row>
@@ -330,7 +345,7 @@ return installmentsArray
                       </S.InputGroup>
                       <S.InputGroup>
                         <label htmlFor="cardNumber">Número do cartão</label>
-                        <input
+                        <InputMask
                           id="cardNumber"
                           type="text"
                           name="cardNumber"
@@ -338,11 +353,12 @@ return installmentsArray
                           onChange={form.handleChange}
                           onBlur={form.handleBlur}
                           className={checkInputHasError('cardNumber') ? 'error' : ''}
+                          mask="9999 9999 9999 9999"
                         />
                       </S.InputGroup>
                       <S.InputGroup maxWidth="123px">
                         <label htmlFor="expiresMonth">Mês do expiração</label>
-                        <input
+                        <InputMask
                           id="expiresMonth"
                           type="text"
                           name="expiresMonth"
@@ -350,11 +366,12 @@ return installmentsArray
                           onChange={form.handleChange}
                           onBlur={form.handleBlur}
                           className={checkInputHasError('expiresMonth') ? 'error' : ''}
+                          mask="99"
                         />
                       </S.InputGroup>
                       <S.InputGroup maxWidth="123px">
                         <label htmlFor="expiresYear">Ano do expiração</label>
-                        <input
+                        <InputMask
                           id="expiresYear"
                           type="text"
                           name="expiresYear"
@@ -362,13 +379,14 @@ return installmentsArray
                           onChange={form.handleChange}
                           onBlur={form.handleBlur}
                           className={checkInputHasError('expiresYear') ? 'error' : ''}
+                          mask="99"
                         />
                         <small>
                         </small>
                       </S.InputGroup>
                       <S.InputGroup maxWidth="48px">
                         <label htmlFor="cardCode">CVV</label>
-                        <input
+                        <InputMask
                           id="cardCode"
                           type="text"
                           name="cardCode"
@@ -376,12 +394,13 @@ return installmentsArray
                           onChange={form.handleChange}
                           onBlur={form.handleBlur}
                           className={checkInputHasError('cardCode') ? 'error' : ''}
+                          mask="999"
                         />
 
                       </S.InputGroup>
                     </S.Row>
                     <S.Row marginTop="24px">
-                      <S.InputGroup maxWidth="200px">
+                      <S.InputGroup maxWidth="150px">
                         <label htmlFor="installments">Parcelamento</label>
                         <select
                           id="installments"
@@ -392,7 +411,7 @@ return installmentsArray
                           className={checkInputHasError('installments') ? 'error' : ''}
                         >
                           {installments.map ((installments) =>(
-                          <option key={installments.quantity}>
+                          <option value={installments.quantity} key={installments.quantity}>
                             {installments.quantity}x de {' '} 
                             {installments.formattedAmount}
                           </option>
@@ -414,8 +433,13 @@ return installmentsArray
               </div>
             </>
           </Card>
-          <Button onClick={form.handleSubmit} type="submit" title="Clique aqui para finalizar a compra">
-            Finalizar compra
+          <Button
+            onClick={form.handleSubmit}
+            type="submit"
+            title="Clique aqui para finalizar a compra"
+            disabled={isLoading}
+          >
+            {isLoading ? 'Finalizando compra...' : 'Finalizar compra'}
           </Button>
         </form>
       )}

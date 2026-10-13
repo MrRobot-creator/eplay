@@ -1,5 +1,5 @@
 /* eslint-disable prettier/prettier */
-import { Game } from "../Pages/Home"
+
 
 export const parseToBrl = (amount = 0) => {
   return new Intl.NumberFormat('pt-BR', {
